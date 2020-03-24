@@ -4,13 +4,13 @@ import numpy as np
 
 df = pd.read_stata('C:/Users/林子晴/Desktop/dataset.dta')
 
-df = df[df.taxeringsvrde > 0]
-df = df[df.pris > 0]
-df = df[df.taxr == 2006]
-df = df[df.fakod == 1]
-df = df.sort_values("kontraktsdatum", ascending=True)
+df = df[df.taxeringsvrde > 0]   #remove missing value of tax value
+df = df[df.pris > 0]            #remove missing value of price (market value)
+df = df[df.taxr == 2006]        ##assessment year = 2006
+df = df[df.fakod == 1]          #location =stockholm
+df = df.sort_values("kontraktsdatum", ascending=True)   #kontraktsdatum=date (yyyy-mm-dd)
 
-month = df.groupby(df['month'])
+month = df.groupby(df['month'])   #month :1.0~96.0 (2005-2012) ##13.0=2006JAN ##25.0=2007JAN
 
 year = df.groupby(df['year_nr'])
 
@@ -23,15 +23,15 @@ def get_year_price(i):
     return year.get_group(i)['pris']
 
 
-def get_year_day(i):
+def get_year_day(i):                #(yyyy-mm-dd)
     return year.get_group(i)['kontraktsdatum']
 
 
-def get_day(k):
+def get_day(k):                     #(dd)
     return month.get_group(k)['day_nr']
 
 
-def get_date(k):
+def get_date(k):                    #(yyyy-mm-dd)
     return month.get_group(k)['kontraktsdatum']
 
 
