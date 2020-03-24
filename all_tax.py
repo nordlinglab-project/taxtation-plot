@@ -70,7 +70,7 @@ plt.ylabel("tax")
 plt.ylim(0, 10000000)
 plt.show()
 
-# 2006 date v.s. price-----------------------------------------------------
+# 2006 date v.s. tax-----------------------------------------------------
 plt.figure()
 plt.subplot(3, 4, 1)
 plt.scatter(get_day(13.0), get_tax(13.0), sizes=[0.25])
