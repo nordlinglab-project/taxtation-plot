@@ -7,7 +7,6 @@ df = pd.read_stata('C:/Users/林子晴/Desktop/dataset.dta')
 df = df[df.taxeringsvrde > 0]
 df = df[df.pris > 0]
 df = df[df.taxr == 2006]
-df = df[df.fakod == 1]
 df = df.sort_values("kontraktsdatum", ascending=True)
 
 month = df.groupby(df['month'])
